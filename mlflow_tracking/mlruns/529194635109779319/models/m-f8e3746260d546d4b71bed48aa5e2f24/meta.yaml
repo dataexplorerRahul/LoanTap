@@ -1,0 +1,10 @@
+artifact_location: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/models/m-f8e3746260d546d4b71bed48aa5e2f24/artifacts
+creation_timestamp: 1766219207793
+experiment_id: '529194635109779319'
+last_updated_timestamp: 1766219217482
+model_id: m-f8e3746260d546d4b71bed48aa5e2f24
+model_type: null
+name: Ensemble_eval_model
+source_run_id: 76d89a5469fc4f8e9c66fab954bed5c9
+status: 2
+status_message: null

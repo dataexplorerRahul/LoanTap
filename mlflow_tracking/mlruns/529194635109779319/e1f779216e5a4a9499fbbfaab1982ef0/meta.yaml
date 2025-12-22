@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/e1f779216e5a4a9499fbbfaab1982ef0/artifacts
+end_time: 1766141274987
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: e1f779216e5a4a9499fbbfaab1982ef0
+run_name: Ensemble_threshold_search
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766141140948
+status: 3
+tags: []
+user_id: raon1

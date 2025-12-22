@@ -1,0 +1,50 @@
+artifact_path: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/models/m-accb3b00703242d4ba3803f43e47279f/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.8
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+is_signature_from_type_hint: false
+mlflow_version: 3.6.0
+model_id: m-accb3b00703242d4ba3803f43e47279f
+model_size_bytes: 1518738
+model_uuid: m-accb3b00703242d4ba3803f43e47279f
+prompts: null
+run_id: 8802392888d24d84abbe95d69d2a05f6
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "loan_amnt", "required": true}, {"type": "string",
+    "name": "term", "required": true}, {"type": "double", "name": "int_rate", "required":
+    true}, {"type": "double", "name": "installment", "required": true}, {"type": "string",
+    "name": "grade", "required": true}, {"type": "string", "name": "sub_grade", "required":
+    true}, {"type": "string", "name": "emp_length", "required": true}, {"type": "string",
+    "name": "home_ownership", "required": true}, {"type": "double", "name": "annual_inc",
+    "required": true}, {"type": "string", "name": "verification_status", "required":
+    true}, {"type": "string", "name": "issue_d", "required": true}, {"type": "string",
+    "name": "purpose", "required": true}, {"type": "double", "name": "dti", "required":
+    true}, {"type": "string", "name": "earliest_cr_line", "required": true}, {"type":
+    "double", "name": "open_acc", "required": true}, {"type": "double", "name": "pub_rec",
+    "required": true}, {"type": "double", "name": "revol_bal", "required": true},
+    {"type": "double", "name": "revol_util", "required": true}, {"type": "double",
+    "name": "total_acc", "required": true}, {"type": "string", "name": "initial_list_status",
+    "required": true}, {"type": "string", "name": "application_type", "required":
+    true}, {"type": "double", "name": "mort_acc", "required": true}, {"type": "double",
+    "name": "pub_rec_bankruptcies", "required": true}, {"type": "string", "name":
+    "address", "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-12-20 08:25:53.683306'

@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/c7952957870b42eeb835cb6a6e1c61d7/artifacts
+end_time: 1765965358046
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: c7952957870b42eeb835cb6a6e1c61d7
+run_name: lgbm_drop_nan_target_encoding_wo_outlier_capping
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765965304003
+status: 3
+tags: []
+user_id: raon1

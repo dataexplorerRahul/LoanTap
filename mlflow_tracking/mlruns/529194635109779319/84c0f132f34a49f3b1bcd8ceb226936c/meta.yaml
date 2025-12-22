@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/84c0f132f34a49f3b1bcd8ceb226936c/artifacts
+end_time: 1765965040547
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: 84c0f132f34a49f3b1bcd8ceb226936c
+run_name: lgbm_drop_nan_no_encoding
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765964993431
+status: 3
+tags: []
+user_id: raon1

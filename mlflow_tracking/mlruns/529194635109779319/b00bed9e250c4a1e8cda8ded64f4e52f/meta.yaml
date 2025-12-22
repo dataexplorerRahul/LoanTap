@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/b00bed9e250c4a1e8cda8ded64f4e52f/artifacts
+end_time: 1765950924407
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: b00bed9e250c4a1e8cda8ded64f4e52f
+run_name: rf_drop_nan
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765950722735
+status: 3
+tags: []
+user_id: raon1

@@ -1,0 +1,69 @@
+artifact_path: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/models/m-edeac060c27846169e1b656959faa9f6/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.8
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+is_signature_from_type_hint: false
+mlflow_version: 3.6.0
+model_id: m-edeac060c27846169e1b656959faa9f6
+model_size_bytes: 10960
+model_uuid: m-edeac060c27846169e1b656959faa9f6
+prompts: null
+run_id: 1a45d4da97034d83b6eebe8ffdfc0b95
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "loan_amnt", "required": true}, {"type": "long",
+    "name": "term", "required": true}, {"type": "double", "name": "int_rate", "required":
+    true}, {"type": "double", "name": "installment", "required": true}, {"type": "double",
+    "name": "sub_grade", "required": true}, {"type": "double", "name": "emp_length",
+    "required": true}, {"type": "double", "name": "annual_inc", "required": true},
+    {"type": "double", "name": "dti", "required": true}, {"type": "double", "name":
+    "open_acc", "required": true}, {"type": "double", "name": "pub_rec", "required":
+    true}, {"type": "double", "name": "revol_bal", "required": true}, {"type": "double",
+    "name": "revol_util", "required": true}, {"type": "double", "name": "mort_acc",
+    "required": true}, {"type": "double", "name": "pub_rec_bankruptcies", "required":
+    true}, {"type": "double", "name": "emi_ratio", "required": true}, {"type": "double",
+    "name": "credit_age_years", "required": true}, {"type": "double", "name": "closed_acc",
+    "required": true}, {"type": "long", "name": "negative_rec", "required": true},
+    {"type": "double", "name": "credit_util_ratio", "required": true}, {"type": "double",
+    "name": "mortgage_ratio", "required": true}, {"type": "double", "name": "verification_status_Verified",
+    "required": true}, {"type": "double", "name": "application_type_NON_INDIVIDUAL",
+    "required": true}, {"type": "double", "name": "initial_list_status_w", "required":
+    true}, {"type": "double", "name": "home_ownership_OTHER", "required": true}, {"type":
+    "double", "name": "home_ownership_OWN", "required": true}, {"type": "double",
+    "name": "home_ownership_RENT", "required": true}, {"type": "double", "name": "purpose_credit_card",
+    "required": true}, {"type": "double", "name": "purpose_debt_consolidation", "required":
+    true}, {"type": "double", "name": "purpose_educational", "required": true}, {"type":
+    "double", "name": "purpose_home_improvement", "required": true}, {"type": "double",
+    "name": "purpose_house", "required": true}, {"type": "double", "name": "purpose_major_purchase",
+    "required": true}, {"type": "double", "name": "purpose_medical", "required": true},
+    {"type": "double", "name": "purpose_moving", "required": true}, {"type": "double",
+    "name": "purpose_other", "required": true}, {"type": "double", "name": "purpose_renewable_energy",
+    "required": true}, {"type": "double", "name": "purpose_small_business", "required":
+    true}, {"type": "double", "name": "purpose_vacation", "required": true}, {"type":
+    "double", "name": "purpose_wedding", "required": true}, {"type": "double", "name":
+    "address_05113", "required": true}, {"type": "double", "name": "address_11650",
+    "required": true}, {"type": "double", "name": "address_22690", "required": true},
+    {"type": "double", "name": "address_29597", "required": true}, {"type": "double",
+    "name": "address_30723", "required": true}, {"type": "double", "name": "address_48052",
+    "required": true}, {"type": "double", "name": "address_70466", "required": true},
+    {"type": "double", "name": "address_86630", "required": true}, {"type": "double",
+    "name": "address_93700", "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-12-18 09:12:09.323850'

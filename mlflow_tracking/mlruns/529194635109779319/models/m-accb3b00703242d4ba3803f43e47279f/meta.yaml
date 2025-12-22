@@ -1,0 +1,10 @@
+artifact_location: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/models/m-accb3b00703242d4ba3803f43e47279f/artifacts
+creation_timestamp: 1766219153598
+experiment_id: '529194635109779319'
+last_updated_timestamp: 1766219162895
+model_id: m-accb3b00703242d4ba3803f43e47279f
+model_type: null
+name: Xgboost_eval_model
+source_run_id: 8802392888d24d84abbe95d69d2a05f6
+status: 2
+status_message: null

@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/81ce536263a94aabb140a070364a49b6/artifacts
+end_time: 1765954805819
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: 81ce536263a94aabb140a070364a49b6
+run_name: rf_drop_nan_target_encoding_w_outlier_capping
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765954577905
+status: 3
+tags: []
+user_id: raon1

@@ -1,0 +1,1 @@
+{'colsubsample_bytree': np.float64(0.6383528385131301), 'learning_rate': np.float64(0.14438994640245736), 'max_depth': 4, 'min_child_weight': 7, 'n_estimators': 232, 'reg_lambda': 5, 'subsample': np.float64(0.6518667742570476)}

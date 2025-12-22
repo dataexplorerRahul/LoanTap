@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/1a45d4da97034d83b6eebe8ffdfc0b95/artifacts
+end_time: 1766049146781
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: 1a45d4da97034d83b6eebe8ffdfc0b95
+run_name: Logreg_Gridsearch
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766043223891
+status: 3
+tags: []
+user_id: raon1

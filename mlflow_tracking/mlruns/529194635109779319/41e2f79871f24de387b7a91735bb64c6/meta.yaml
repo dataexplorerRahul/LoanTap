@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/41e2f79871f24de387b7a91735bb64c6/artifacts
+end_time: 1765952163476
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: 41e2f79871f24de387b7a91735bb64c6
+run_name: rf_drop_nan_ohe_target_encoding
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765951950916
+status: 3
+tags: []
+user_id: raon1

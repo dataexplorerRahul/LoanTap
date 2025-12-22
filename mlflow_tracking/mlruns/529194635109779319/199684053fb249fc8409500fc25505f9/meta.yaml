@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/199684053fb249fc8409500fc25505f9/artifacts
+end_time: 1766054470463
+entry_point_name: ''
+experiment_id: '529194635109779319'
+lifecycle_stage: active
+run_id: 199684053fb249fc8409500fc25505f9
+run_name: Xgboost_Randomizedsearch
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766053547311
+status: 3
+tags: []
+user_id: raon1

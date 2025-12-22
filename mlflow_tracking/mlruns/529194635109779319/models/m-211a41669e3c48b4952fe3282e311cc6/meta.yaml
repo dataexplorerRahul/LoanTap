@@ -1,0 +1,10 @@
+artifact_location: file:///c:/Users/raon1/Desktop/Python/Projects/LoanTap/mlflow_tracking/mlruns/529194635109779319/models/m-211a41669e3c48b4952fe3282e311cc6/artifacts
+creation_timestamp: 1766219055122
+experiment_id: '529194635109779319'
+last_updated_timestamp: 1766219085616
+model_id: m-211a41669e3c48b4952fe3282e311cc6
+model_type: null
+name: Logreg_eval_model
+source_run_id: 5545693708da41cfa8f608f4789d6027
+status: 2
+status_message: null
