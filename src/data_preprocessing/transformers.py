@@ -31,8 +31,8 @@ class DataCleaner(BaseEstimator, TransformerMixin):
         for feat in ["issue_d", "earliest_cr_line"]:    
             X[feat] = pd.to_datetime(X[feat], format="mixed")
 
-        # Extract state code from address feature
-        X["address"] = X["address"].str.extract(r'.\s([\w]{2})\s\d{4,5}$')[0]
+        # Extract pincode from address feature
+        X["address"] = X["address"].str.extract(r'.(\d{5})$')
 
         # Merge categories to reduce cardinality
         X["home_ownership"] = X["home_ownership"].replace(["ANY", "NONE"], "OTHER") # Merging ANY & NONE into OTHER
@@ -41,81 +41,6 @@ class DataCleaner(BaseEstimator, TransformerMixin):
         
         return X
 
-
-# Custom Feature-engineering transformer
-class FeatureEngineer(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        pass
-
-    def fit(self, X, y=None):
-        return self # nothing to fit, return self
-    
-    def transform(self, X):
-        # Ensure X is a dataframe to access columns
-        if not isinstance(X, pd.DataFrame):
-            raise ValueError("X should be a pandas Dataframe object")
-        
-        X = X.copy()
-
-        # Loan to income ratio
-        X["loan_income_ratio"] = (X["loan_amnt"] / X["annual_inc"]).round(2)
-        # EMI to monthly income ratio
-        X["emi_ratio"] = (X["installment"] / (X["annual_inc"]/12)).round(2)
-        # Credit-line age in years
-        X["credit_age_years"] = ((X["issue_d"] - X["earliest_cr_line"]).dt.days / 365).round(1)
-        # Total closed accounts
-        X["closed_acc"] = X["total_acc"] - X["open_acc"]
-        # Has negative records
-        X["negative_rec"] = ((X["pub_rec"]> 0) | (X["pub_rec_bankruptcies"]>0)).astype("int")
-        # Credit utilization ratio
-        X["credit_util_ratio"] = (X["revol_bal"] / X["annual_inc"]).round(2)
-        # Mortgage accounts ratio
-        X["mortgage_ratio"] = (X["mort_acc"] / X["total_acc"]).round(2)
-
-        return X
-    
-# Custom Outlier handler transformer
-class OutlierHandler(BaseEstimator, TransformerMixin):
-    def __init__(self, features):
-        self.features = features
-
-    def fit(self, X, y=None):
-        # Ensure X is a dataframe to access columns
-        if not isinstance(X, pd.DataFrame):
-            raise ValueError("X should be a pandas Dataframe object")
-        
-        # Calculating the statistics
-        self.bounds_ = {}
-        for col in self.features:
-            upper_bound = X[col].quantile(0.98)
-            self.bounds_[col] = upper_bound
-            
-        return self
-    
-    def transform(self, X):
-        # Check if fitted
-        if not self.bounds_:
-            raise RuntimeError("You must run fit() before transform()")
-        
-        X = X.copy()
-        # Capping the outliers on the upper-end
-        for col in self.features:
-            upper_bound = self.bounds_[col]
-            X[col] = X[col].clip(upper=upper_bound)
-        return X
-    
-# Custom Feature dropper transformer
-class FeatureDropper(BaseEstimator, TransformerMixin):
-    def __init__(self, features):
-        self.features = features
-
-    def fit(self, X, y=None):
-        return self # Nothing to fit, return self
-    
-    def transform(self, X):
-        X = X.copy()
-        return X.drop(columns=self.features, errors="ignore")
-    
 # Custom Imputer transformer
 class Imputer(BaseEstimator, TransformerMixin):
     def __init__(self, use_knn_imputation=False, num_features=None, cat_features=None):
@@ -165,10 +90,71 @@ class Imputer(BaseEstimator, TransformerMixin):
         return X
     
 
+# Custom Outlier handler transformer
+class OutlierHandler(BaseEstimator, TransformerMixin):
+    def __init__(self, features):
+        self.features = features
+
+    def fit(self, X, y=None):
+        # Ensure X is a dataframe to access columns
+        if not isinstance(X, pd.DataFrame):
+            raise ValueError("X should be a pandas Dataframe object")
+        
+        # Calculating the statistics
+        self.bounds_ = {}
+        for col in self.features:
+            upper_bound = X[col].quantile(0.98)
+            self.bounds_[col] = upper_bound
+            
+        return self
+    
+    def transform(self, X):
+        # Check if fitted
+        if not self.bounds_:
+            raise RuntimeError("You must run fit() before transform()")
+        
+        X = X.copy()
+        # Capping the outliers on the upper-end
+        for col in self.features:
+            upper_bound = self.bounds_[col]
+            X[col] = X[col].clip(upper=upper_bound)
+        return X
+
+
+# Custom Feature-engineering transformer
+class FeatureEngineer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        pass
+
+    def fit(self, X, y=None):
+        return self # nothing to fit, return self
+    
+    def transform(self, X):
+        # Ensure X is a dataframe to access columns
+        if not isinstance(X, pd.DataFrame):
+            raise ValueError("X should be a pandas Dataframe object")
+        
+        X = X.copy()
+
+        # EMI to monthly income ratio
+        X["emi_ratio"] = (X["installment"] / (X["annual_inc"]/12)).round(2)
+        # Credit-line age in years
+        X["credit_age_years"] = ((X["issue_d"] - X["earliest_cr_line"]).dt.days / 365).round(1)
+        # Total closed accounts
+        X["closed_acc"] = X["total_acc"] - X["open_acc"]
+        # Has negative records
+        X["negative_rec"] = ((X["pub_rec"]> 0) | (X["pub_rec_bankruptcies"]>0)).astype("int")
+        # Credit utilization ratio
+        X["credit_util_ratio"] = (X["revol_bal"] / X["annual_inc"]).round(2)
+        # Mortgage accounts ratio
+        X["mortgage_ratio"] = (X["mort_acc"] / X["total_acc"]).round(2)
+
+        return X
+
+
 # Custom Categorical Encoder transformer
 class CatEncoder(BaseEstimator, TransformerMixin):
-    def __init__(self, encoder_type="woe", ohe_features=None, supervised_features=None):
-        self.encoder_type = encoder_type
+    def __init__(self, ohe_features=None, supervised_features=None):
         self.ohe_features = ohe_features
         self.supervised_features = supervised_features
 
@@ -176,22 +162,16 @@ class CatEncoder(BaseEstimator, TransformerMixin):
         self.grade_map = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6}
         self.sub_grade_map = {"A1": 0, "A2": 1, "A3": 2, "A4": 3, "A5": 4, "B1": 5, "B2": 6, "B3": 7, "B4": 8, "B5": 9, "C1": 10, "C2": 11, "C3": 12, "C4": 13, "C5": 14, "D1": 15, "D2": 16, "D3": 17, "D4": 18, "D5": 19, "E1": 20, "E2": 21, "E3": 22, "E4": 23, "E5": 24, "F1": 25, "F2": 26, "F3": 27, "F4": 28, "F5": 29, "G1": 30, "G2": 31, "G3": 32, "G4": 33, "G5": 34}
         self.emp_length_map = {"< 1 year": 0, "1 year": 1, "2 years": 2, "3 years": 3, "4 years": 4, "5 years": 5,  "6 years": 6, "7 years": 7, "8 years": 8, "9 years": 9, "10+ years": 10}
+        self.term_map = {"36 months": 0, "60 months": 1}
 
     def fit(self, X, y=None):
         # Ensure X is a dataframe to access columns
         if not isinstance(X, pd.DataFrame):
             raise ValueError("X should be a pandas Dataframe object")
         
-        # Instantiate the encoder
-        if self.encoder_type == "woe":
-            self.sup_encoder_ = WOEEncoder(cols=self.supervised_features)
-        elif self.encoder_type == "target":
-            self.sup_encoder_ = TargetEncoder(cols=self.supervised_features)
-        else:
-            raise ValueError("encoder_type must be either 'woe' or 'target'") 
-        
         # Fit the encoders
         if self.supervised_features:
+            self.sup_encoder_ = TargetEncoder(cols=self.supervised_features)
             self.sup_encoder_.fit(X, y)
 
         if self.ohe_features:
@@ -202,11 +182,10 @@ class CatEncoder(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         # Check if the encoder has fitted
-        try:
-            check_is_fitted(self.sup_encoder_)
-            check_is_fitted(self.ohe_encoder_)
-        except NotFittedError:
-            raise RuntimeError("You must run fit() before transform()")
+        if self.supervised_features and not hasattr(self, "sup_encoder_"):
+            raise NotFittedError("Target encoder is not fitted")
+        if self.ohe_features and not hasattr(self, "ohe_encoder_"):
+            raise NotFittedError("One-hot encoder is not fitted")
         
         X = X.copy()
 
@@ -224,10 +203,11 @@ class CatEncoder(BaseEstimator, TransformerMixin):
             X = pd.concat([X, X_ohe], axis=1) # concat transformed ohe_features to dataset
         
         # Ordinal encoding
+        X["term"] = X["term"].map(self.term_map)
         X["grade"] = X["grade"].map(self.grade_map)
         X["sub_grade"] = X["sub_grade"].map(self.sub_grade_map)
         X["emp_length"] = X["emp_length"].map(self.emp_length_map)
-
+        
         return X
     
 
@@ -264,4 +244,36 @@ class Scaler(BaseEstimator, TransformerMixin):
             scaled_nums = self.scaler_.transform(X[self.features])
             X[self.features] = scaled_nums
 
+        return X
+    
+
+# Custom Feature dropper transformer
+class FeatureDropper(BaseEstimator, TransformerMixin):
+    def __init__(self, features):
+        self.features = features
+
+    def fit(self, X, y=None):
+        return self # Nothing to fit, return self
+    
+    def transform(self, X):
+        X = X.copy()
+        return X.drop(columns=self.features, errors="ignore")
+    
+
+# Custom Dtype converter transformer
+class DtypeConverter(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        pass
+
+    def fit(self, X, y=None):
+        return self # nothing to fit, return self
+    
+    def transform(self, X):
+        X = X.copy()
+
+        # Convert dtype of categorical features from 'object' to 'category'
+        cat_feat = [feat for feat in X.columns if X[feat].dtype=="object"]
+        if cat_feat:
+            X[cat_feat] = X[cat_feat].astype("category")
+        
         return X
